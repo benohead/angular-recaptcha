@@ -39,6 +39,7 @@
         }
 
         function loadScript(url) {
+            delete $window.grecaptcha;
             loaded = false;
             var deferred = $q.defer();
             // Adding the script tag to the head as suggested before
