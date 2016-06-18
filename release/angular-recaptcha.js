@@ -27,7 +27,7 @@
         function getRecaptcha() {
             return $q.when(loaded)
                 .then(function () {
-                    $log.debug('Returning reCatpcha window object');
+                    // $log.debug('Returning reCatpcha window object');
                     return recaptcha = $window.grecaptcha;
                 })
         }
@@ -49,13 +49,13 @@
             script.src = url;
 
             function callback() {
-                $log.debug('reCaptcha script loaded, waiting for window.grecaptcha');
+                // $log.debug('reCaptcha script loaded, waiting for window.grecaptcha');
                 var iterations = 0;
                 var waitPromise = $interval(function () {
                     iterations++;
                     if (!!$window.grecaptcha) {
                         $interval.cancel(waitPromise);
-                        $log.debug('window.grecaptcha exists!');
+                        // $log.debug('window.grecaptcha exists!');
                         loaded = true;
                         deferred.resolve(script);
                     } else if (iterations >= iterationTimeout) {
@@ -175,10 +175,10 @@
                         throwNoKeyException();
                     }
                     if (!language) {
-                        $log.warn('Language not defined! Using english as fallback');
+                        // $log.warn('Language not defined! Using english as fallback');
                         language = 'en';
                     } else {
-                        $log.debug('Language changed to: ' + language + ' - Refreshing reCaptcha');
+                        // $log.debug('Language changed to: ' + language + ' - Refreshing reCaptcha');
                     }
                     destroy();
                     init(language);
